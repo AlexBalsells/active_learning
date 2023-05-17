@@ -1,0 +1,57 @@
+2023-05-17 17:28:55.788874: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2023-05-17 17:28:55.834002: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-05-17 17:28:56.473411: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-05-17 17:28:59.271076: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1635] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 44904 MB memory:  -> device: 2, name: Quadro RTX 8000, pci bus id: 0000:3e:00.0, compute capability: 7.5
+  0%|          | 0/2 [00:00<?, ?it/s]2023-05-17 17:29:00.536710: I tensorflow/compiler/xla/stream_executor/cuda/cuda_dnn.cc:424] Loaded cuDNN version 8600
+2023-05-17 17:29:01.046347: I tensorflow/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+2023-05-17 17:29:01.049047: I tensorflow/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+2023-05-17 17:29:01.049089: W tensorflow/compiler/xla/stream_executor/gpu/asm_compiler.cc:109] Couldn't get ptxas version : FAILED_PRECONDITION: Couldn't get ptxas/nvlink version string: INTERNAL: Couldn't invoke ptxas --version
+2023-05-17 17:29:01.051786: I tensorflow/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: No such file or directory
+2023-05-17 17:29:01.051845: W tensorflow/compiler/xla/stream_executor/gpu/redzone_allocator.cc:317] INTERNAL: Failed to launch ptxas
+Relying on driver to perform ptx compilation. 
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+2023-05-17 17:29:03.806186: I tensorflow/compiler/xla/service/service.cc:169] XLA service 0x80300b30 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2023-05-17 17:29:03.806210: I tensorflow/compiler/xla/service/service.cc:177]   StreamExecutor device (0): Quadro RTX 8000, Compute Capability 7.5
+2023-05-17 17:29:03.809513: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+2023-05-17 17:29:03.828991: W tensorflow/compiler/xla/service/gpu/llvm_gpu_backend/gpu_backend_lib.cc:530] Can't find libdevice directory ${CUDA_DIR}/nvvm/libdevice. This may result in compilation or runtime failures, if the program we try to run uses routines from libdevice.
+Searched for CUDA in the following directories:
+  ./cuda_sdk_lib
+  /usr/local/cuda-11.8
+  /usr/local/cuda
+  .
+You can choose the search directory by setting xla_gpu_cuda_data_dir in HloModule's DebugOptions.  For most apps, setting the environment variable XLA_FLAGS=--xla_gpu_cuda_data_dir=/path/to/cuda will work.
+2023-05-17 17:29:03.829157: W tensorflow/compiler/xla/service/gpu/llvm_gpu_backend/gpu_backend_lib.cc:274] libdevice is required by this HLO module but was not found at ./libdevice.10.bc
+2023-05-17 17:29:03.829388: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:362 : INTERNAL: libdevice not found at ./libdevice.10.bc
+  0%|          | 0/2 [00:04<?, ?it/s]
+Traceback (most recent call last):
+  File "/rsrch1/ip/abalsells/Liver_Click_Experiment/Notebooks/Active Learning/ial_driver.py", line 47, in <module>
+    ob.run_ML()
+  File "/rsrch1/ip/abalsells/Liver_Click_Experiment/Notebooks/Active Learning/ial_class.py", line 201, in run_ML
+    self.optimizer.apply_gradients(zip(grads,self.unet.trainable_weights))
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/keras/optimizers/optimizer.py", line 1174, in apply_gradients
+    return super().apply_gradients(grads_and_vars, name=name)
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/keras/optimizers/optimizer.py", line 650, in apply_gradients
+    iteration = self._internal_apply_gradients(grads_and_vars)
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/keras/optimizers/optimizer.py", line 1200, in _internal_apply_gradients
+    return tf.__internal__.distribute.interim.maybe_merge_call(
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/tensorflow/python/distribute/merge_call_interim.py", line 51, in maybe_merge_call
+    return fn(strategy, *args, **kwargs)
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/keras/optimizers/optimizer.py", line 1250, in _distributed_apply_gradients_fn
+    distribution.extended.update(
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/tensorflow/python/distribute/distribute_lib.py", line 2637, in update
+    return self._update(var, fn, args, kwargs, group)
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/tensorflow/python/distribute/distribute_lib.py", line 3710, in _update
+    return self._update_non_slot(var, fn, (var,) + tuple(args), kwargs, group)
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/tensorflow/python/distribute/distribute_lib.py", line 3716, in _update_non_slot
+    result = fn(*args, **kwargs)
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/tensorflow/python/autograph/impl/api.py", line 595, in wrapper
+    return func(*args, **kwargs)
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/keras/optimizers/optimizer.py", line 1245, in apply_grad_to_update_var
+    return self._update_step_xla(grad, var, id(self._var_key(var)))
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/tensorflow/python/util/traceback_utils.py", line 153, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/home/abalsells/miniconda3/envs/tf_liver/lib/python3.9/site-packages/tensorflow/python/eager/execute.py", line 52, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+tensorflow.python.framework.errors_impl.InternalError: libdevice not found at ./libdevice.10.bc [Op:__inference__update_step_xla_1355]
